@@ -17,9 +17,23 @@ export ANDROID_HOME="$ANDROID_SDK"
 
 
 #h is the hostname, w is the complete path
-export PS1="\u@$(scutil --get ComputerName): \w $ "
-#alternate
+
+#non color: 
 #export PS1="[\u@\H] \w/ $ "
+
+PS1="["
+PS1+="\[\e[1;34m\]" #blue color for line below
+PS1+="\u"           #current user
+PS1+="\[\033[0m\]"  #white for @
+PS1+="@"
+PS1+="\[\e[0;33m\]"   #yellow for host
+PS1+="\H"
+PS1+="\[\033[0m\]"  #white for rest
+PS1+="] \w/ $ "
+export PS1
+
+#alternate
+#export PS1="\u@$(scutil --get ComputerName): \w $ "
 
 ##
 # Path Changes
