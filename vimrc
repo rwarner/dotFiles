@@ -25,7 +25,7 @@ syntax enable
 set grepprg=grep\ -nH\ $*
 
 " Set backup stuff
+" backupdir and directory need to be created
 set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
-

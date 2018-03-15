@@ -1,0 +1,29 @@
+###
+# Bash Profile
+###
+
+
+### Aliases ###
+## TODO: Add bash_aliases file here
+
+### Variables ###
+
+# Android SDK
+export ANDROID_SDK=""
+export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
+export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
+export ANDROID_SDK_BUILD_TOOLS="$ANDROID_SDK/build-tools"
+export ANDROID_HOME="$ANDROID_SDK"
+
+
+#h is the hostname, w is the complete path
+export PS1="\u@$(scutil --get ComputerName): \w $ "
+#alternate
+#export PS1="[\u@\H] \w/ $ "
+
+##
+# Path Changes
+##
+
+#/usr/local/bin before path for brew
+export PATH="$JAVA_HOME/bin:/usr/local/bin:$PATH:$ANDROID_SDK_TOOLS:$ANDROID_SDK_PLATFORM_TOOLS"
