@@ -1,0 +1,5 @@
+### Aliases
+alias gs="git status "
+alias ga="git add "
+alias gc="git commit "
+alias rebrew="brew update && brew upgrade && brew cleanup -s -force"
