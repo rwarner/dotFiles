@@ -7,5 +7,5 @@ Backing up and restoring these files:
 
 ## Files
 
-* ```bash_aliases```    Convient aliases for bash
-* ```vimrc```           My vim settings
+* ```bash_aliases```    Convenient aliases for bash
+* ```vimrc```           My Vim settings
