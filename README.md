@@ -16,6 +16,6 @@ Backing up and restoring these files:
 
 
 ## Sources
-```vim/colors/material-monokai```: https://github.com/skielbasa/vim-material-monokai - @skielbasa
-```iTerm2/material-design-colors.itermcolors```: https://github.com/MartinSeeler/iterm2-material-design - @MartinSeeler
+```vim/colors/material-monokai```: [@skielbasa](https://github.com/skielbasa/vim-material-monokai)
 
+```iTerm2/material-design-colors.itermcolors```: [@MartinSeeler](https://github.com/MartinSeeler/iterm2-material-design)
