@@ -1,0 +1,52 @@
+Max OSX nuances:
+
+Settings / Preferences
+
+General
+ - Use Dark Menu Bar and Dock
+ - Uncheck close windows when quitting an app
+Keyboard
+ - Max out Key Repeat and Delay Repeat
+	defaults write NSGlobalDomain KeyRepeat -int 1
+	defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+ - Text > Disable Correct spelling automatically
+	defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+Dock
+ - Dock on Left Side
+ - 1/3 Size Small/Large
+Mission Control
+ - Disable Automatically rearrange Spaces based on most recent use
+	defaults write com.apple.dock mru-spaces -bool false
+
+Security & Privacy
+ - Allow apps downloaded from: Anywhere
+Trackpad
+ - Tracking speed 8/10
+ - Disable Scroll direction natural
+ - Disable App Expose (Swipe down with three fingers)
+ Accessibility
+ - Disable Shake mouse pointer to locate
+ Date & Time
+ - Clock > Show Date
+ Network
+ - Disable inactive adapters
+ - Change iPv6 to link-local only to prevent sleep problems
+
+ - Disable language/accent keys
+ 	defaults write -g ApplePressAndHoldEnabled -bool false
+
+
+Terminal
+
+ - Pro profile
+ - Anti Alias Text
+ - Monaco 12pt
+
+ iTerm2
+  - https://github.com/MartinSeeler/iterm2-material-design
+
+  
+ Go2Shell
+ SublimeText

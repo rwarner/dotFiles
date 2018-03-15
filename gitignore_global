@@ -1,0 +1,7 @@
+## The following files will be ignored globally. 
+
+# Include this file in your ~/.gitconfig 
+# git config --global core.excludesfile '~/gitignore_global'
+
+## OSX Files
+.DS_store

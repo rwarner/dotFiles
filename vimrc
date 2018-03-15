@@ -1,3 +1,7 @@
+set background=dark
+set termguicolors
+colorscheme material-monokai
+
 set shiftwidth=4 softtabstop=4
 
 " Line numbers
@@ -25,7 +29,7 @@ syntax enable
 set grepprg=grep\ -nH\ $*
 
 " Set backup stuff
-" backupdir and directory need to be created
 set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
+
