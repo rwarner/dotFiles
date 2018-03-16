@@ -22,4 +22,8 @@ git config --global core.excludesfile ~/.gitignore_global
 cp bash/bash_aliases ~/.bash_aliases
 cp bash/bash_profile ~/.bash_profile
 
-# TODO - Update iTerm2 preferences
+# iTerm2 -> Preferences -> General has an auto-save to directory
+# Specify the preferences directory
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$PWD/iTerm2"
+# Tell iTerm2 to use the custom preferences in the directory
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
