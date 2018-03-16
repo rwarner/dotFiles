@@ -11,3 +11,5 @@ cp gitignore_global ~/.gitignore_global
 # Bash restoration
 cp bash/bash_aliases ~/.bash_aliases
 cp bash/bash_profile ~/.bash_profile
+
+# TODO - Update iTerm2 preferences
