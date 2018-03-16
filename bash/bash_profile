@@ -1,26 +1,36 @@
-###
-# Bash Profile
-###
+#Bash Profile
+
+# Load MITRE specific proxy if applicable
+if [ -f ~/.mitre_proxy ]; then
+    source ~/.mitre_proxy
+fi
+
+# Load Bash Aliases if applicable
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+fi
+
+#Android SDK
+export ANDROID_SDK=~/Library/Android/sdk
+export ANDROID_SDK_PLATFORM=$ANDROID_SDK/platform-tools
+export ANDROID_SDK_BUILD=$ANDROID_SDK/build-tools
+export ANDROID_SDK_TOOLS=$ANDROID_SDK/tools
+export ANDROID_HOME=$ANDROID_SDK
 
 
-### Aliases ###
-## TODO: Add bash_aliases file here
-
-### Variables ###
-
-# Android SDK
-export ANDROID_SDK=""
-export ANDROID_SDK_TOOLS="$ANDROID_SDK/tools"
-export ANDROID_SDK_PLATFORM_TOOLS="$ANDROID_SDK/platform-tools"
-export ANDROID_SDK_BUILD_TOOLS="$ANDROID_SDK/build-tools"
-export ANDROID_HOME="$ANDROID_SDK"
+#Main Variables
+export PATH="$ANDROID_SDK:$ANDROID_SDK_PLATFORM:$ANDROID_SDK_BUILD:$ANDROID_SDK_TOOLS:$PATH"
 
 
-#h is the hostname, w is the complete path
+#Maven if applicable
+if [ -d ~/Library/Maven/ ]; then
+    export MAVEN_HOME=~/Library/Maven/3.5.2
+    export MAVEN_HOME_BIN=$MAVEN_HOME/bin
+    export PATH="$PATH:$MAVEN_HOME_BIN"
+fi
 
-#non color: 
-#export PS1="[\u@\H] \w/ $ "
 
+#PS1
 PS1="["
 PS1+="\[\e[1;34m\]" #blue color for line below
 PS1+="\u"           #current user
@@ -31,13 +41,6 @@ PS1+="\H"
 PS1+="\[\033[0m\]"  #white for rest
 PS1+="] \w/ $ "
 export PS1
-
-#alternate
+#Alternative
 #export PS1="\u@$(scutil --get ComputerName): \w $ "
 
-##
-# Path Changes
-##
-
-#/usr/local/bin before path for brew
-export PATH="$JAVA_HOME/bin:/usr/local/bin:$PATH:$ANDROID_SDK_TOOLS:$ANDROID_SDK_PLATFORM_TOOLS"

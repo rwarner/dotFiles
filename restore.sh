@@ -5,6 +5,15 @@
 cp -R vim/ ~/.vim/
 cp vimrc ~/.vimrc
 
+# Create vim directories for backup/tmp if they don't exist
+if [ -d ~/.vim/backup ]; then
+    mkdir -p ~/.vim/backup
+fi
+
+if [ -d ~/.vim/tmp ]; then
+    mkdir -p ~/.vim/tmp
+fi
+
 # Git restoration
 cp gitignore_global ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global

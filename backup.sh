@@ -2,7 +2,7 @@
 # Backup of dot files
 
 # Vim restoration
-cp -R ~/.vim/ vim/
+cp ~/.vim/colors/* vim/colors
 cp ~/.vimrc vimrc 
 
 # Git restoration
