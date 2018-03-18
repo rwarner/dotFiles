@@ -2,7 +2,7 @@
 # Restoration of dot files
 
 # Vim restoration
-cp -R vim/ ~/.vim/
+cp -R vim/* ~/.vim/
 cp vimrc ~/.vimrc
 
 # Create vim directories for backup/tmp if they don't exist
@@ -16,6 +16,7 @@ fi
 
 # Git restoration
 cp gitignore_global ~/.gitignore_global
+git config --global user.name "Ryan Warner"
 git config --global core.excludesfile ~/.gitignore_global
 
 # Bash restoration
