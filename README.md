@@ -3,7 +3,9 @@
 ## Usages
 Backing up and restoring these files:
 
+```bash restore.sh``` Will restore files from this directory to the local machine
 
+```bash backup.sh``` Will backup local files to this directory
 
 ## Files
 
@@ -13,6 +15,8 @@ Backing up and restoring these files:
 * ```vimrc```                Custom Vim settings
 * ```.gitignore_global```    Globally ignored files for git
 * ```iTerm2/material-design-colors``` Custom theme for iTerm2
+* ```iTerm2/com.googlecode.iterm2.plist``` Custom settings for iTerm2 (I.e. preferences)
+* ```OSX nuances.txt``` OSX preferences to be folded into the restore script in the future
 
 
 ## Sources
