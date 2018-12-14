@@ -2,7 +2,7 @@
 # Restoration of dot files
 
 # Vim restoration
-cp -R vim/* ~/.vim/
+cp -R vim/ ~/.vim
 cp vimrc ~/.vimrc
 
 # Create vim directories for backup/tmp if they don't exist
