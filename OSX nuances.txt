@@ -16,16 +16,18 @@ Keyboard
 Dock
  - Dock on Left Side
  - 1/3 Size Small/Large
+ - Disable "Show recent applications in dock"
 Mission Control
  - Disable Automatically rearrange Spaces based on most recent use
 	defaults write com.apple.dock mru-spaces -bool false
 
 Security & Privacy
  - Allow apps downloaded from: Anywhere
-Trackpad
+Trackpad / Mouse
  - Tracking speed 8/10
  - Disable Scroll direction natural
  - Disable App Expose (Swipe down with three fingers)
+ - Enable Secondary Click on right side
  Accessibility
  - Disable Shake mouse pointer to locate
  Date & Time
@@ -37,6 +39,11 @@ Trackpad
  - Disable language/accent keys
  	defaults write -g ApplePressAndHoldEnabled -bool false
 
+Spotlight
+ - Keyboard Shortcuts -> Disable "Show spotlight search", use Alfred instead
+
+Desktop
+ - Right click -> Snap to Grid
 
 Terminal
 
@@ -50,3 +57,6 @@ Terminal
   
  Go2Shell
  SublimeText
+
+ Alfred
+ - Appearance -> Hide hat on Alfred, Show Alfred on "Active screen"
