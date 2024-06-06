@@ -18,8 +18,10 @@ export ANDROID_SDK_TOOLS=$ANDROID_SDK/tools
 export ANDROID_HOME=$ANDROID_SDK
 
 
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+
 #Main Variables
-export PATH="$ANDROID_SDK:$ANDROID_SDK_PLATFORM:$ANDROID_SDK_BUILD:$ANDROID_SDK_TOOLS:$PATH"
+export PATH="$ANDROID_SDK:$ANDROID_SDK_PLATFORM:$ANDROID_SDK_BUILD:$ANDROID_SDK_TOOLS:$JAVA_HOME:$JAVA_HOME/bin:$PATH"
 
 
 #Maven if applicable
@@ -29,6 +31,12 @@ if [ -d ~/Library/Maven/ ]; then
     export PATH="$PATH:$MAVEN_HOME_BIN"
 fi
 
+# Gradle if applicable
+if [ -d ~/Library/Gradle/ ]; then
+    export GRADLE_HOME=~/Library/Gradle/7.3.1
+    export GRADLE_HOME_BIN=$GRADLE_HOME/bin
+    export PATH="$PATH:$GRADLE_HOME_BIN"
+fi
 
 #PS1
 PS1="["
@@ -37,7 +45,7 @@ PS1+="\u"           #current user
 PS1+="\[\033[0m\]"  #white for @
 PS1+="@"
 PS1+="\[\e[0;33m\]"   #yellow for host
-PS1+="\H"
+PS1+="\h"
 PS1+="\[\033[0m\]"  #white for rest
 PS1+="] \w/ $ "
 export PS1
