@@ -18,11 +18,13 @@ export ANDROID_SDK_TOOLS=$ANDROID_SDK/tools
 export ANDROID_HOME=$ANDROID_SDK
 
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
 
 #Main Variables
 export PATH="$ANDROID_SDK:$ANDROID_SDK_PLATFORM:$ANDROID_SDK_BUILD:$ANDROID_SDK_TOOLS:$JAVA_HOME:$JAVA_HOME/bin:$PATH"
 
+# Ignore warning about ZSH upgrade in OSX 
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 #Maven if applicable
 if [ -d ~/Library/Maven/ ]; then
@@ -33,7 +35,7 @@ fi
 
 # Gradle if applicable
 if [ -d ~/Library/Gradle/ ]; then
-    export GRADLE_HOME=~/Library/Gradle/7.3.1
+    export GRADLE_HOME=~/Library/Gradle/8.10.2
     export GRADLE_HOME_BIN=$GRADLE_HOME/bin
     export PATH="$PATH:$GRADLE_HOME_BIN"
 fi
