@@ -1,56 +1,147 @@
-#Bash Profile
+#!/bin/bash
+#############################
+####     Bash Profile    ####
+#############################
 
-# Load MITRE specific proxy if applicable
-if [ -f ~/.mitre_proxy ]; then
-    source ~/.mitre_proxy
-fi
-
-# Load Bash Aliases if applicable
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
-
-#Android SDK
-export ANDROID_SDK=~/Library/Android/sdk
-export ANDROID_SDK_PLATFORM=$ANDROID_SDK/platform-tools
-export ANDROID_SDK_BUILD=$ANDROID_SDK/build-tools
-export ANDROID_SDK_TOOLS=$ANDROID_SDK/tools
-export ANDROID_HOME=$ANDROID_SDK
-
-
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
-
-#Main Variables
-export PATH="$ANDROID_SDK:$ANDROID_SDK_PLATFORM:$ANDROID_SDK_BUILD:$ANDROID_SDK_TOOLS:$JAVA_HOME:$JAVA_HOME/bin:$PATH"
+# ========= Notes ============
+# Login shell for OSX set manually to:
+#   /bin/bash
+#   chsh -s /bin/bash
+#
+#   06/26/25 - Not using Brew as of late
+#     Then installed updated bash via Homebrew
+#     brew install bash
+#       /opt/homebrew/bin/bash
+#       (Not working) chsh -s /opt/homebrew/bin/bash
+#       (Not working) dscl . -change /Users/rtwarner UserShell /opt/homebrew/bin/bash
+#       Users & Groups -> Right click on Username -> Login shell -> /opt/homebrew/bin/bash -> Reboot
+# - Set iTerm and Terminal to use "Login Shell"
+# - Set homebrew bash to be first in $PATH
+# =============================
 
 # Ignore warning about ZSH upgrade in OSX 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-#Maven if applicable
-if [ -d ~/Library/Maven/ ]; then
-    export MAVEN_HOME=~/Library/Maven/3.5.2
-    export MAVEN_HOME_BIN=$MAVEN_HOME/bin
-    export PATH="$PATH:$MAVEN_HOME_BIN"
+# =============== Additional Files ================
+
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
 fi
 
-# Gradle if applicable
-if [ -d ~/Library/Gradle/ ]; then
-    export GRADLE_HOME=~/Library/Gradle/8.10.2
+if [ -f ~/.bash_profile_work ]; then
+    source ~/.bash_profile_work
+fi
+
+# =================================================
+
+
+# =============== Android SDK ================
+if [ -d ~/Library/Android/sdk/ ]; then
+    export ANDROID_SDK=~/Library/Android/sdk
+
+    export ANDROID_SDK_PLATFORM=$ANDROID_SDK/platform-tools
+    export ANDROID_SDK_BUILD=$ANDROID_SDK/build-tools
+    export ANDROID_SDK_TOOLS=$ANDROID_SDK/tools
+    export ANDROID_HOME=$ANDROID_SDK
+
+    export PATH="$PATH:$ANDROID_SDK:$ANDROID_SDK_PLATFORM:$ANDROID_SDK_BUILD:$ANDROID_SDK_TOOLS"
+fi
+# =================================================
+
+# =============== Gradle ==========================
+if [ -d ~/Library/gradle/ ]; then
+    export GRADLE_HOME=~/Library/Gradle/gradle-8.9
     export GRADLE_HOME_BIN=$GRADLE_HOME/bin
     export PATH="$PATH:$GRADLE_HOME_BIN"
 fi
+# =================================================
 
-#PS1
+# =============== Homebrew ========================
+if [ -d /opt/homebrew/ ]; then
+    export BREW_HOME=/opt/homebrew/bin
+
+    #Put homebrew bin before anything, since we want to use the new bash first
+    export PATH="$BREW_HOME:$PATH"
+fi
+# =================================================
+
+# =================== Java ========================
+if [ -d /Library/Java/JavaVirtualMachines ]; then
+    #export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/
+    #export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.0.8.jdk/Contents/Home/
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home/
+    export PATH="$PATH:$JAVA_HOME"
+fi
+# =================================================
+
+# =================== Maven =======================
+if [ -d ~/Library/Maven/ ]; then
+    export MAVEN_HOME=~/Library/Maven/3.6.3
+    export MAVEN_HOME_BIN=$MAVEN_HOME/bin
+    export PATH="$PATH:$MAVEN_HOME_BIN"
+fi
+# =================================================
+
+# =================== Python =======================
+# Installed manually from package online
+if [ -d /Library/Frameworks/Python.framework ]; then
+    export PYTHON_HOME=/Library/Frameworks/Python.framework/Versions/3.10
+    export PATH="$PYTHON_HOME:$PYTHON_HOME/bin:$PATH"
+fi
+
+# Python virtualenv exist
+if [ -d ~/.virtualenvs/ ]; then
+    export WORKON_HOME=~/.virtualenvs
+    export PATH="$PATH:$WORKON_HOME"
+    # There is no Python2 in Monterey OSX, specify python 3
+    export VIRTUALENVWRAPPER_PYTHON="$PYTHON_HOME/bin/python3"
+    source $PYTHON_HOME/bin/virtualenvwrapper.sh
+fi
+# =================================================
+
+# =================== Ant =========================
+if [ -d ~/Library/Ant/ ]; then
+    export ANT_HOME=~/Library/Ant
+    export ANT_HOME_BIN=$ANT_HOME/bin
+    export PATH="$PATH:$ANT_HOME_BIN"
+fi
+# =================================================
+
+# =================== Go ==========================
+if [ -d ~/Library/Go/ ]; then
+    export GOROOT=/usr/local/go
+    export GOPATH="${HOME}/Library/Go"
+    
+    export GO_ROOT_BIN=$GOROOT/bin
+    export GO_PATH_BIN=$GOPATH/bin
+    
+    export PATH="$PATH:$GO_ROOT_BIN:$GO_PATH_BIN"
+fi
+# =================================================
+
+
+# =================== NVM ==========================
+if [ -d ~/.nvm/ ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+# =================================================
+
+# =================== Bash Prompt =================
 PS1="["
-PS1+="\[\e[1;34m\]" #blue color for line below
-PS1+="\u"           #current user
-PS1+="\[\033[0m\]"  #white for @
+PS1+="\[\e[1;34m\]"     # Blue color for line below
+PS1+="\u"               # Current user
+PS1+="\[\033[0m\]"      # White for @
 PS1+="@"
-PS1+="\[\e[0;33m\]"   #yellow for host
-PS1+="\h"
-PS1+="\[\033[0m\]"  #white for rest
+PS1+="\[\e[0;33m\]"     # Yellow for host
+PS1+="\H"
+PS1+="\[\033[0m\]"      # White for rest
 PS1+="] \w/ $ "
 export PS1
 #Alternative
 #export PS1="\u@$(scutil --get ComputerName): \w $ "
+# =================================================
 
+# pyenv (must be after PATH exports)
+eval "$(pyenv init -)"

@@ -1,5 +1,48 @@
-### Aliases
-alias gs="git status "
-alias ga="git add "
-alias gc="git commit "
+#!/bin/bash
+#############################
+#### Bash Aliases - MAIN ####
+#############################
+
+
+# =============== Additional Files ================
+
+# Load work-specific aliases if the file exists
+if [ -f ~/.bash_aliases_work ]; then
+    source ~/.bash_aliases_work
+fi
+
+# =================================================
+
+# =============== Brew Commands ===================
+
 alias rebrew="brew update && brew upgrade && brew cleanup"
+
+# =================================================
+
+# =============== Docker Commands =================
+
+alias dprune="docker system prune"
+alias dremove="docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)"
+
+# =================================================
+
+# =========== Git Commands ========================
+# 
+#	Notes:
+#  		- Remove all branches locally that do not exist on remote: 
+#  		     
+#  		     git fetch -p && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
+#		
+#  		- Catch an old branch up to date without complicated rebasing:
+#		
+#  		     git rebase --onto <newparent> <oldparent>
+#		
+#  		- Rename a branch local and remote
+#  		     
+#  		     git checkout <old_name>
+#  		     git branch -m <new_name>
+#  		     git push -u origin :<old_name> <new_name>
+
+alias gpr="git pull --rebase --prune"
+
+# =================================================
