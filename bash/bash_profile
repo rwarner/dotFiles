@@ -50,7 +50,7 @@ fi
 
 # =============== Gradle ==========================
 if [ -d ~/Library/gradle/ ]; then
-    export GRADLE_HOME=~/Library/Gradle/gradle-8.9
+    export GRADLE_HOME=~/Library/Gradle/gradle-8.13
     export GRADLE_HOME_BIN=$GRADLE_HOME/bin
     export PATH="$PATH:$GRADLE_HOME_BIN"
 fi
