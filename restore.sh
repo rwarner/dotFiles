@@ -59,12 +59,91 @@ if [ "$(uname)" == "Darwin" ]; then
     # Silence ZSH upgrade prompt
     cp .hushlogin ~/.hushlogin
 
-    # iTerm2 — point to dotfiles folder so prefs auto-save back here
+    # ── Keyboard ───────────────────────────────────────────────────────────────
+    # Fastest key repeat (System Settings > Keyboard)
+    defaults write NSGlobalDomain KeyRepeat -int 1
+    defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+    # Disable press-and-hold for accented characters (enables key repeat in apps)
+    defaults write -g ApplePressAndHoldEnabled -bool false
+
+    # Disable auto spelling correction
+    defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+    # Disable auto capitalization
+    defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+    # ── Dock ───────────────────────────────────────────────────────────────────
+    # Move dock to left side
+    defaults write com.apple.dock orientation -string "left"
+
+    # Disable recent applications section in dock
+    defaults write com.apple.dock show-recents -bool false
+
+    # ── Mission Control ────────────────────────────────────────────────────────
+    # Disable automatically rearranging spaces based on recent use
+    defaults write com.apple.dock mru-spaces -bool false
+
+    # ── Finder ─────────────────────────────────────────────────────────────────
+    # Show path bar at bottom of Finder window
+    defaults write com.apple.finder ShowPathbar -bool true
+
+    # Show all file extensions
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+    # ── General ────────────────────────────────────────────────────────────────
+    # Keep windows when quitting an app (uncheck "close windows when quitting")
+    defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
+
+    # Disable shake mouse pointer to locate (accessibility)
+    defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true
+
+    # Show date in menu bar clock
+    defaults write com.apple.menuextra.clock ShowDate -int 1
+
+    # Dark mode
+    osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
+
+    # ── Trackpad ───────────────────────────────────────────────────────────────
+    # Tracking speed — 2.5 approximates 8/10 in System Settings
+    defaults write NSGlobalDomain com.apple.trackpad.scaling -float 2.5
+
+    # Disable natural (reverse) scroll direction
+    defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+
+    # Disable App Exposé gesture (swipe down with three fingers)
+    defaults write com.apple.dock showAppExposeGestureEnabled -bool false
+
+    # ── Dock ───────────────────────────────────────────────────────────────────
+    # Dock size
+    defaults write com.apple.dock tilesize -int 54
+
+    # ── Spotlight ──────────────────────────────────────────────────────────────
+    # Disable Cmd+Space Spotlight shortcut — use Alfred instead
+    /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || \
+    /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:enabled bool false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null
+
+    # ── Gatekeeper ─────────────────────────────────────────────────────────────
+    # Allow apps downloaded from anywhere (requires sudo)
+    if [ "$EUID" -eq 0 ] || sudo -n true 2>/dev/null; then
+        sudo spctl --master-disable
+    else
+        echo "⚠️  Skipping Gatekeeper — run manually: sudo spctl --master-disable"
+    fi
+
+    # ── Apply changes ──────────────────────────────────────────────────────────
+    killall Dock
+    killall Finder
+    killall SystemUIServer
+
+    # ── iTerm2 ─────────────────────────────────────────────────────────────────
+    # Point to dotfiles folder so prefs auto-save back here
     defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$PWD/iTerm2"
     defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
     defaults read com.googlecode.iterm2
 
-    echo "Please restart iTerm2 if running this from within iTerm2"
+    echo ""
+    echo "✓ macOS defaults applied — please restart iTerm2 if running from within it"
 
 elif [ "$(uname)" == "Linux" ]; then
     echo "No iTerm2 on Linux, ignoring macOS steps"
