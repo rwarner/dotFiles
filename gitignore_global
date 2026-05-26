@@ -1,7 +1,70 @@
-## The following files will be ignored globally. 
+## Global gitignore — applies to all repos on this machine
 
-# Include this file in your ~/.gitconfig 
-# git config --global core.excludesfile '~/gitignore_global'
+# ── macOS ──────────────────────────────────────────────────────────────────────
+.DS_Store                   # was .DS_store (lowercase) — was never matching
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.AppleDouble
+.LSOverride
 
-## OSX Files
-.DS_store
+# ── Xcode / Swift ──────────────────────────────────────────────────────────────
+*.xcuserstate
+*.xcscmblueprint
+xcuserdata/
+.build/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# ── Node ───────────────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+
+# ── Python ─────────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.Python
+.venv/
+venv/
+*.egg-info/
+dist/
+.pytest_cache/
+
+# ── Ruby ───────────────────────────────────────────────────────────────────────
+.bundle/
+vendor/bundle
+
+# ── Go ─────────────────────────────────────────────────────────────────────────
+*.exe
+*.test
+*.out
+
+# ── Android ────────────────────────────────────────────────────────────────────
+*.apk
+*.aab
+local.properties
+.gradle/
+captures/
+
+# ── Editors ────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-workspace
+
+# ── Environment / Secrets ──────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem

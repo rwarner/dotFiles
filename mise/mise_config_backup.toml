@@ -1,0 +1,13 @@
+[tools]
+ffmpeg = "latest"
+gh = "latest"
+node = "22"
+python = "3.11"
+ruby = "3.3"
+shellcheck = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
+
+[settings]
+
+[settings.ruby]
+compile = false
