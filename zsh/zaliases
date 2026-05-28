@@ -1,13 +1,13 @@
-#!/bin/bash
+#!/bin/zsh
 #############################
-#### Bash Aliases - MAIN ####
+#### Zsh Aliases - MAIN  ####
 #############################
 
 # ── Additional Files ───────────────────────────────────────────────────────────
 
 # Load work-specific aliases if applicable
-if [ -f ~/.bash_aliases_work ]; then
-    source ~/.bash_aliases_work
+if [ -f ~/.zaliases_work ]; then
+    source ~/.zaliases_work
 fi
 
 # ── Docker ─────────────────────────────────────────────────────────────────────
@@ -35,7 +35,7 @@ alias gpr="git pull --rebase --prune"
 # ── Java ───────────────────────────────────────────────────────────────────────
 # Switch Java version for the current session via mise.
 # Versions downloaded on first use — browse with: mise ls-remote java | grep zulu
-# Work machines: if _jv_post_hook is defined (e.g. in bash_aliases_work), it runs
+# Work machines: if _jv_post_hook is defined (e.g. in zaliases_work), it runs
 # automatically after each switch (used for cert imports, etc).
 
 jv() {
@@ -49,11 +49,11 @@ jv() {
     fi
 
     $HOME/.local/bin/mise use -g "java@${1}" || return 1
-    eval "$($HOME/.local/bin/mise env --shell bash)"
+    eval "$($HOME/.local/bin/mise env --shell zsh)"
     echo "Switched to $(java -version 2>&1 | head -1)"
     echo "JAVA_HOME → $JAVA_HOME"
 
-    # Work-specific post-switch hook (defined in bash_aliases_work if present)
+    # Work-specific post-switch hook (defined in zaliases_work if present)
     type _jv_post_hook &>/dev/null 2>&1 && _jv_post_hook
 }
 

@@ -1,18 +1,10 @@
-#Bash Profile
-
-# Silence macOS prompt to switch to ZSH
-export BASH_SILENCE_DEPRECATION_WARNING=1
+#Zsh Profile
 
 # ── External Config ────────────────────────────────────────────────────────────
 
-# Load aliases if applicable
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
-
 # Load work-specific profile if applicable
-if [ -f ~/.bash_profile_work ]; then
-    source ~/.bash_profile_work
+if [ -f ~/.zprofile_work ]; then
+    source ~/.zprofile_work
 fi
 
 # ── SDK Homes ──────────────────────────────────────────────────────────────────
@@ -60,28 +52,7 @@ $PATH"
 # Per-project overrides via .mise.toml or legacy .nvmrc / .python-version files
 
 if [ -x "$HOME/.local/bin/mise" ]; then
-    eval "$($HOME/.local/bin/mise activate bash)"
+    eval "$($HOME/.local/bin/mise activate zsh)"
 fi
 
-# ── Prompt ─────────────────────────────────────────────────────────────────────
-
-# Capture exit code before anything else in PS1 can overwrite $?
-PROMPT_COMMAND='_ps1_exit=$?'
-
-# Current git branch — empty string if not in a repo
-_git_branch() {
-    git branch 2>/dev/null | grep '^\*' | sed 's/\* //'
-}
-
-PS1="["
-PS1+="\[\e[1;34m\]"                       # blue
-PS1+="\u"                                 # current user
-PS1+="\[\033[0m\]"                        # reset
-PS1+="@"
-PS1+="\[\e[0;33m\]"                       # yellow
-PS1+="\h"                                 # host
-PS1+="\[\033[0m\]"                        # reset
-PS1+="] \w"                               # working directory
-PS1+=" \[\e[0;32m\]\$(_git_branch)\[\033[0m\]"  # git branch in green
-PS1+=' $( [ $_ps1_exit -eq 0 ] && echo "\[\e[0;32m\]✓" || echo "\[\e[0;31m\]✗")\[\033[0m\] $ '  # exit status
-export PS1
+# Prompt is configured in ~/.zshrc (interactive shell)

@@ -28,6 +28,12 @@ fi
 cp bash/bash_aliases ~/.bash_aliases
 cp bash/bash_profile ~/.bash_profile
 
+# ── Zsh ────────────────────────────────────────────────────────────────────────
+
+cp zsh/zprofile ~/.zprofile
+cp zsh/zshrc ~/.zshrc
+cp zsh/zaliases ~/.zaliases
+
 # ── SSH ────────────────────────────────────────────────────────────────────────
 
 # ssh/config is gitignored (contains personal info) — copy only if present locally
